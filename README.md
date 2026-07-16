@@ -71,7 +71,9 @@ npm run dev
 │   └── main.py          # App entry point
 ├── tests/               # Test suite
 ├── eval/                # Evaluation results
-├── presentation/        # Demo materials
+├── demo-pitch-deck/     # Pilot pathway + presentation package
+│   ├── pilot/           # PILOT_PATHWAY.md, feedback, interview-notes, evidence
+│   └── presentation/    # Deck outline, demo script, Q&A, submission checklist
 ├── Dockerfile           # Multi-stage build
 ├── docker-compose.yml   # Full stack
 ├── .github/workflows/   # CI/CD pipelines
@@ -105,18 +107,26 @@ Sử dụng hệ thống tài liệu Harness để hướng dẫn các AI Coding
 |--------|------|-------------|
 | GET | /health | Health check |
 | POST | /api/v1/chat | Chat with agent |
-| POST | /api/v1/analyze | Analyze input |
+| GET | /api/v1/status | Agent readiness status |
 
 ## Deliverables Checklist
 
-- [x] Source Code (GitHub)
-- [x] README.md
-- [x] Architecture Diagram (`docs/architecture_diagram.md`)
-- [x] AI Logs (auto-collected)
-- [ ] Live URL / Deploy
-- [ ] Video Demo
-- [ ] Pitch Deck (`presentation/`)
-- [ ] Evaluation Evidence (`eval/results/`)
+Template capabilities are shipped scaffolding; project deliverables start unchecked
+and are checked only when actually done (not by default).
+
+Template capability available:
+- [x] Source code skeleton (`src/`, `frontend/`)
+- [x] README
+- [x] Architecture doc (`docs/ARCHITECTURE.md`)
+- [x] Presentation package (`demo-pitch-deck/presentation/`)
+- [x] Pilot pathway (`demo-pitch-deck/pilot/PILOT_PATHWAY.md`)
+
+Project deliverable completed:
+- [ ] Live URL / deploy
+- [ ] Video demo
+- [ ] Filled pitch deck (`demo-pitch-deck/presentation/`)
+- [ ] Evaluation evidence (`eval/results/`)
+- [ ] AI logs wired to a real tracing sink
 
 ## Team
 

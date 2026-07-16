@@ -6,5 +6,8 @@ class ChatRequest(BaseModel):
 
 
 class ChatResponse(BaseModel):
-    response: str = Field(..., description="Phản hồi từ agent")
-    analysis: str = Field(default="", description="Phân tích nội bộ")
+    answer: str = Field(..., description="The user-facing answer")
+    explanation: str = Field(default="", description="User-facing rationale (no internal diagnostics)")
+    sources: list[str] = Field(default_factory=list, description="Supporting sources, if any")
+    trace_id: str = Field(..., description="Correlates this response with server logs/traces")
+    status: str = Field(default="success", description="success | error")

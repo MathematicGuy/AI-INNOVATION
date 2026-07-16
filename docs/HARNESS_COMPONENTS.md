@@ -82,13 +82,7 @@ one Runtime Substrate responsibility.
 | `docs/TOOL_REGISTRY.md` | Tool access | Context selection, verification |
 | `docs/README.md` | Project memory | Context selection |
 | `docs/TEST_MATRIX.md` | Verification | Task state |
-| `docs/decisions/0001-harness-first-development.md` | Project memory | Permissions |
-| `docs/decisions/0002-post-spec-product-lifecycle.md` | Project memory | Task specification |
-| `docs/decisions/0003-generic-spec-intake-harness.md` | Project memory | Task specification |
-| `docs/decisions/0004-sqlite-durable-layer.md` | Project memory | Observability, task state |
-| `docs/decisions/0005-prebuilt-rust-harness-cli.md` | Project memory | Tool access |
-| `docs/decisions/0006-phase-4-benchmark-triage.md` | Project memory | Verification |
-| `docs/decisions/0007-improvement-proposal-rules.md` | Project memory | Entropy auditing, permissions |
+
 | `docs/decisions/README.md` | Project memory | Context selection |
 | `docs/demo/README.md` | Task specification | Project memory |
 | `docs/product/README.md` | Task specification | Project memory |

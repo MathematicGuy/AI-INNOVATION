@@ -110,8 +110,6 @@ Sử dụng hệ thống tài liệu Harness để hướng dẫn các AI Coding
 - [ ] Live URL / Deploy
 - [ ] Video Demo
 - [ ] Pitch Deck (`presentation/`)
-- [x] Weekly Journal (`JOURNAL.md`)
-- [x] Worklog (`WORKLOG.md`)
 - [ ] Evaluation Evidence (`eval/results/`)
 
 ## Team

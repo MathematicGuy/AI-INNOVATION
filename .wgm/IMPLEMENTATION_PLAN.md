@@ -33,11 +33,13 @@
 - **files/areas:** `scripts/verify-codebase-mcp.sh`, `scripts/verify-codebase-mcp.ps1`
 - **validation:** `powershell -ExecutionPolicy Bypass -File .\scripts\verify-codebase-mcp.ps1`
 - **acceptance:** The local validation script runs successfully and verifies all aspects of codebase-memory-mcp integration.
-- **status:** pending
-- **notes:**
+- **status:** done
+- **notes:** Ran successfully. All integration checks passed.
 
 ## Done
 - T1 — Create local verification scripts and configure Git files
 - T2 — Create GitHub Actions CI workflow
+- TZ — Demo validation (required before Ship/Handoff)
+
 
 

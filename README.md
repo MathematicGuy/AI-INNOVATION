@@ -1,155 +1,127 @@
-## The Problem
+# [Tên Dự Án]
 
-Most repos are built for humans reading code in a familiar codebase. Coding
-agents usually enter with only a chat prompt and a shallow snapshot of files.
-That leads to common failure modes:
+> Tóm tắt 1 câu: [Vấn đề] → [Giải pháp AI] cho [Target User]
 
-- The agent edits code before understanding product intent.
-- Important constraints live only in chat history or in someone's head.
-- Validation expectations are vague or discovered too late.
-- Architecture tradeoffs are repeated instead of inherited.
-- Large requests do not get broken into reviewable story-sized work.
+## Vấn đề (Problem)
 
-## The Harness Approach
+Mô tả pain point cụ thể với data/số liệu:
+- Ai đang gặp vấn đề?
+- Vấn đề tốn bao nhiêu thời gian/tiền?
+- Tại sao các giải pháp hiện tại chưa đủ?
 
-A repository starts to have a harness when it helps an agent answer practical
-engineering questions without relying only on chat history:
+## Giải pháp (Solution)
 
-- What should I read first?
-- What type of work is this?
-- Which product contract does it affect?
-- How risky is the change?
-- What proof will show the work is done?
-- What decision or lesson should future agents inherit?
+Sản phẩm giải quyết vấn đề như thế nào bằng AI:
+- Feature 1: [mô tả]
+- Feature 2: [mô tả]
+- Feature 3: [mô tả]
 
-In this repo, those answers live in:
+## Target User
 
-- `AGENTS.md` — the stable agent shim with local project notes and Harness
-  doc links.
-- `docs/HARNESS.md` — the human-agent collaboration model.
-- `docs/FEATURE_INTAKE.md` — tiny, normal, and high-risk work classification.
-- `docs/ARCHITECTURE.md` — architecture discovery and boundary rules.
-- `docs/TEST_MATRIX.md` — behavior-to-proof validation expectations.
-- `docs/stories/` — story packets and backlog items.
-- `docs/decisions/` — durable decisions and tradeoffs.
-- `docs/templates/` — reusable spec, story, decision, and validation templates.
+- Primary: [mô tả user chính]
+- Secondary: [mô tả user phụ]
 
-OpenAI describes this shift as an agent-first world where humans steer and
-agents execute:
+## Tech Stack
 
-https://openai.com/index/harness-engineering/
+| Layer | Technology |
+|-------|-----------|
+| AI Agent | LangGraph + [LLM] |
+| Backend | FastAPI + Python 3.11+ |
+| Frontend | React/Next.js + TypeScript |
+| Database | PostgreSQL / SQLite |
+| DevOps | Docker + GitHub Actions |
 
-## Try The Flow
+## Quick Start
 
-The fastest way to understand the harness is to inspect the tiny demo:
+```bash
+# 1. Clone repo
+git clone https://github.com/a20-ai-thuc-chien/A20-App-XXX.git
+cd A20-App-XXX
 
-- `docs/demo/README.md`: shows how a simple product idea becomes product docs,
-  stories, validation expectations, and decisions before implementation starts.
+# 2. Setup environment
+cp .env.example .env
+# Edit .env with your API keys
 
-A typical flow looks like this:
+# 3. Install dependencies
+pip install -r requirements.txt
 
-```text
-human intent or product spec
-  -> product contract
-  -> feature intake
-  -> story packet
-  -> validation expectations
-  -> implementation work
-  -> decision or lesson captured for future agents
+# 4. Run development server
+uvicorn src.main:app --reload
 ```
 
-Implementation prompts do not go straight to code. They first pass through
-feature intake, become story-sized work when needed, and then carry both product
-validation and harness maintenance expectations.
-
-Harness exposes a versioned orchestration contract for external runners. One
-independent consumer is [Symphony](https://github.com/hoangnb24/symphony); it
-is not part of this repository or the Harness installer.
-
-## Tool Registry
-
-The harness can use optional external tools (linters, code-graph servers,
-deploy checks) without depending on any of them. You register a tool as a
-provider of a *capability*, the harness scans whether it is actually present,
-and a workflow step uses whatever is equipped — an absent tool is a clean skip,
-never a failure.
-
-Kinds (`cli`, `binary`, `mcp`, `skill`, `http`) make it agent-generic: each
-agent runtime uses what it can orchestrate. See `docs/TOOL_REGISTRY.md` for the
-full model, the degrade ladder, and how to wire a tool into a flow step.
-
-## Current State
-
-This repository implements the Harness v0 product: a Rust CLI, SQLite durable
-layer, installers, operating documents, contract tests, and release automation.
-Those upstream components are executable product behavior, not placeholders.
-
-Installing Harness into another repository does not create or choose that
-consumer's application, stack, or product specification. It adds the reusable
-engineering layer that helps humans and agents turn the consumer's intent into
-validated work.
-
-## Product Sources
-
-The upstream Harness contract lives in this README, the operating documents,
-the versioned orchestration contract, story packets, and executable tests. The
-generic `docs/product/` directory is reserved for a consumer project's product
-contract; Harness intentionally does not populate it with a fake domain model.
-
-When a user provides a project specification, add or reference it as the input
-spec for the first buildout, then derive smaller living artifacts from it:
-
-- `docs/product/`: current product contract files, created from the spec.
-- `docs/stories/`: story packets and backlog created from selected work.
-- `docs/TEST_MATRIX.md`: behavior-to-proof control panel.
-- `docs/decisions/`: durable decisions and tradeoffs.
-
-Do not keep a project-specific spec or product breakdown in this harness until
-a real project supplies one.
-
-## Repository Structure
+## Project Structure
 
 ```text
-project/
-  AGENTS.md
-  README.md
-  docs/
-    HARNESS.md
-    FEATURE_INTAKE.md
-    ARCHITECTURE.md
-    TEST_MATRIX.md
-    HARNESS_BACKLOG.md
-    product/
-    stories/
-    decisions/
-    demo/
-    templates/
-  scripts/
-    README.md
+├── src/
+│   ├── agents/          # LangGraph agent definitions
+│   │   ├── graph.py     # Main graph (nodes + edges)
+│   │   ├── state.py     # State schema
+│   │   ├── nodes/       # Individual nodes
+│   │   └── tools/       # Agent tools
+│   ├── api/             # FastAPI routes
+│   ├── models/          # Pydantic schemas
+│   ├── services/        # Business logic
+│   ├── config.py        # Settings
+│   └── main.py          # App entry point
+├── tests/               # Test suite
+├── eval/                # Evaluation results
+├── presentation/        # Demo materials
+├── Dockerfile           # Multi-stage build
+├── docker-compose.yml   # Full stack
+├── .github/workflows/   # CI/CD pipelines
+│   └── codebase-mcp.yml # Tự động index codebase-memory-mcp khi push/PR
+├── AGENTS.md            # Hướng dẫn Coding Agent cục bộ của dự án
+└── docs/                # Tài liệu dự án & Khung quy trình Harness
+    ├── HARNESS.md       # Luồng cộng tác human-agent
+    ├── FEATURE_INTAKE.md # Đánh giá rủi ro tính năng (tiny/normal/high-risk)
+    ├── ARCHITECTURE.md  # Ranh giới kiến trúc và kiểm soát tích hợp
+    ├── TEST_MATRIX.md   # Bảng đối chiếu kiểm thử thực tế và yêu cầu
+    ├── HARNESS_BACKLOG.md # Danh sách thiếu sót quy trình cần bổ sung
+    ├── product/         # Tài liệu đặc tả sản phẩm (Harness Product Source)
+    ├── stories/         # Danh sách story packet chi tiết (Harness Product Source)
+    ├── decisions/       # Quyết định kiến trúc quan trọng - ADR (Harness Product Source)
+    └── templates/       # Các mẫu tài liệu đặc tả và story
 ```
 
-## Contributing
+## Harness Product Sources
 
-This project is early and benefits most from real-world agent failure cases,
-example harness installs, docs improvements, and reusable workflow patterns.
-See `CONTRIBUTING.md` for contribution ideas.
+Sử dụng hệ thống tài liệu Harness để hướng dẫn các AI Coding Agent (ví dụ: Claude Code, Cursor) phát triển tính năng một cách an toàn và có kiểm chứng:
 
-Useful contributions include:
+- **`docs/product/`**: Các tài liệu thiết kế nghiệp vụ (product contracts), mô tả hành vi hệ thống mong muốn được trích xuất từ file đặc tả gốc.
+- **`docs/stories/`**: Story packets ghi nhận chi tiết yêu cầu của từng task, tiêu chí nghiệm thu (acceptance criteria) và mã định danh verification receipt.
+- **`docs/TEST_MATRIX.md`**: Ma trận kiểm thử liên kết trực tiếp hành vi nghiệp vụ với các câu lệnh kiểm thử thực tế (unit/integration/E2E tests).
+- **`docs/decisions/`**: Nhật ký quyết định kiến trúc (Architecture Decision Records - ADR) để lưu lại các quyết định thiết kế quan trọng và lý do lựa chọn giải pháp.
 
-- Show how the harness works in a real project.
-- Add missing templates or improve existing ones.
-- Propose validation patterns for different stacks.
-- Share failures where an agent made the wrong change because the repo lacked
-  context.
-- Compare harness behavior across Claude Code, Codex, Cursor, and other tools.
 
-## Share
+## API Endpoints
 
-If this idea resonates, please star the repo and share it with someone building
-with coding agents.
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | /health | Health check |
+| POST | /api/v1/chat | Chat with agent |
+| POST | /api/v1/analyze | Analyze input |
 
-Short description:
+## Deliverables Checklist
 
-> An agent-ready repo harness for Claude Code, Codex, Cursor, and other coding
-> agents: AGENTS.md, product contracts, story packets, validation matrix, and
-> decision records.
+- [x] Source Code (GitHub)
+- [x] README.md
+- [x] Architecture Diagram (`docs/architecture_diagram.md`)
+- [x] AI Logs (auto-collected)
+- [ ] Live URL / Deploy
+- [ ] Video Demo
+- [ ] Pitch Deck (`presentation/`)
+- [x] Weekly Journal (`JOURNAL.md`)
+- [x] Worklog (`WORKLOG.md`)
+- [ ] Evaluation Evidence (`eval/results/`)
+
+## Team
+
+| Member | Role | Student ID |
+|--------|------|-----------|
+| [Name] | [Role] | [ID] |
+| [Name] | [Role] | [ID] |
+| [Name] | [Role] | [ID] |
+
+## License
+
+MIT

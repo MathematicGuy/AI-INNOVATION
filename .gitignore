@@ -17,3 +17,8 @@ scripts/bin/harness-cli.exe
 .harness/*
 !.harness/changesets/
 !.harness/changesets/*.changeset.jsonl
+
+
+# codebase-memory-mcp graph database tracking
+.codebase-memory/*
+!.codebase-memory/graph.db.zst

@@ -1,0 +1,13 @@
+name: codebase-mcp-integration
+description: Verify that codebase-memory-mcp is integrated, indexes successfully, creates the required git configurations, and runs in the CI pipeline.
+tier: 1
+target:
+  kind: cli
+  start: ./scripts/verify-codebase-mcp.sh
+steps:
+  - action: Run verification script locally to build and inspect the knowledge graph
+    expect: The script exits with 0 and prints that the database artifact is successfully tracked and merge strategy is configured.
+  - action: Run git check-ignore to ensure graph.db.zst is not ignored
+    expect: The check-ignore command returns empty, proving the graph file is not ignored by git.
+  - action: Check the content of .gitattributes
+    expect: The .gitattributes file exists and contains '.codebase-memory/graph.db.zst merge=ours'.

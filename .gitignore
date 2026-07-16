@@ -57,7 +57,11 @@ tmp_pytest_manual/
 tmp_pytest_probe/
 pytest-base/
 pytest-temp-root/
-*.png
+
+# Keep product evidence tracked (screenshots, diagrams, deck assets, eval proof).
+# Ignore only throwaway screenshot scratch dirs, never the evidence folders below:
+#   docs/images/**  demo-pitch-deck/presentation/assets/**  eval/evidence/**  are TRACKED on purpose.
+tmp-screenshots/
 
 # Harness durable layer — each project instance generates its own data.
 harness.db

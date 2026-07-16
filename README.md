@@ -45,13 +45,19 @@ cp .env.example .env
 # 3. Install dependencies
 pip install -r requirements.txt
 
-# 4. Run development server
+# 4. Run backend development server
 uvicorn src.main:app --reload
+
+# 5. Run frontend development server
+cd frontend
+npm install
+npm run dev
 ```
 
 ## Project Structure
 
 ```text
+├── frontend/            # Mã nguồn Frontend (React/TS + Vite)
 ├── src/
 │   ├── agents/          # LangGraph agent definitions
 │   │   ├── graph.py     # Main graph (nodes + edges)

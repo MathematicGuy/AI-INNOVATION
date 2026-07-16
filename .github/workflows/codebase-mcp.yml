@@ -1,0 +1,31 @@
+name: Update Codebase Memory MCP
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  update-mcp:
+    runs-on: ubuntu-latest
+    permissions:
+      # Required for stefanzweifel/git-auto-commit-action to commit back
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run MCP Verification & Indexing
+        run: |
+          chmod +x scripts/verify-codebase-mcp.sh
+          ./scripts/verify-codebase-mcp.sh
+
+      - name: Commit and Push Updated Graph
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update codebase-memory knowledge graph [skip ci]"
+          file_pattern: ".codebase-memory/graph.db.zst .gitignore .gitattributes"

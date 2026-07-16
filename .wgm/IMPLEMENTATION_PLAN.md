@@ -24,8 +24,8 @@
 - **validation:** `powershell -ExecutionPolicy Bypass -File .\scripts\verify-codebase-mcp.ps1`
 - **acceptance:** The workflow file `.github/workflows/codebase-mcp.yml` is created and correctly configured to install codebase-memory-mcp, index the repository, run the verification, and commit the graph back to Git.
 - **scenarios/tier:** codebase-mcp-integration (tier 1)
-- **status:** pending
-- **notes:**
+- **status:** done
+- **notes:** Workflow file created and verified.
 
 ## Later (backlog)
 
@@ -38,4 +38,6 @@
 
 ## Done
 - T1 — Create local verification scripts and configure Git files
+- T2 — Create GitHub Actions CI workflow
+
 

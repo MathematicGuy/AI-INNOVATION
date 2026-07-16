@@ -192,7 +192,7 @@ When the user corrects your approach, append a one-line rule here before ending 
 - After any doc-sync or spec-decomposition task that registers new stories, always explain the harness entropy score in the walkthrough: `harness audit` entropy = 10 pts × number of orphaned stories; this is expected for pre-implementation work, not a failure, and resolves when each story is traced and closed.
 - Always run `harness-cli propose` after `harness-cli audit` and include its output in the walkthrough, so the reader knows what improvement actions are available and which are intentional no-ops.
 - After Finish the Implementation Plan tracked .superpowers\sdd\progress.md for each Milestone, save the global Progress to PROGRESS.md
-- Always save handoff file to [.agents/handoffs/[handoff_name].md](file:///e:/VIN-INTERNSHIP/Best-Work-Agent/.agents/handoffs/) for scope, DoD, and tech constraints, (optional: findings and patterns found in the current sessions).
+- Always save handoff files to `.agents/handoffs/<handoff_name>.md` for scope, DoD, and tech constraints (optionally: findings and patterns from the session). `.agents/handoffs/` holds only the current project's live transitions — do not leave stale or example handoffs there.
 
 ---
 

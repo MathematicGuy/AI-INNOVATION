@@ -14,6 +14,23 @@ OWNERS.md, HACKATHON_RUNBOOK.md, and the pilot + presentation packages under
 hardens the `/api/v1/chat` response contract. It also folds in review-aligned
 changes that were already sitting uncommitted in the working tree.
 
+## Follow-up (2026-07-17) — rubric alignment + workflow rewrite
+
+A second, doc-only pass aligned the operating files to the event's published rubric
+and rewrote the MVP workflow. No code or harness-owned paths were touched.
+
+| File | Change |
+|------|--------|
+| `JUDGING.md` | Replaced placeholder with the 6-criterion / 100-pt rubric table (`# | Criterion | Weight | What judges look for | Where we prove it`), each row mapped to real repo proof paths; added the 5 mandatory submission items checklist (11:00 AM, July 19th). Source: `Rubric.png`, `submission_checklist.png`. |
+| `OWNERS.md` | Added a "Rubric rows owned" column so all 100 pts map across the four lanes (Frontend→04+shares 01; Backend→01; AI/Eval→02+05; Pilot/Pitch→03+06); added a Final Submission ownership table + rule to keep the AI Collaboration Log as you go. |
+| `WORKFLOW-MVP.md` | Rewrote into an 18-section (0–18) generic Vietnamese template mirroring `workflow-mvp-example.md`'s representation (numbered sections, mermaid architecture diagram, ascii turn state machine, YAML/python contract blocks), folding in harness patterns from `.agents/archives/HARNESS-ENGINEERING-WORKFLOW.md` (four pillars, provider abstraction, ContextPack, loop guardrails, gated memory, shown-AND-recorded event stream, determinism seams, eval/release gates). Stays a template with `[...]` placeholders, grounded to this repo's FastAPI/LangGraph stack and the `POST /api/v1/chat -> {answer, explanation, sources, trace_id, status}` contract. |
+
+Notes for the reviewer:
+- Rubric rows are cross-referenced from both `JUDGING.md` and `OWNERS.md`; submission
+  ownership in `OWNERS.md` mirrors the checklist in `JUDGING.md`.
+- `WORKFLOW-MVP.md` was written with the Write tool (a Bash heredoc attempt failed on
+  apostrophes in the body); the file is complete and current.
+
 ## Layout decision (important for the reviewer)
 
 The review's Section 7 suggested root-level `pilot/` and `presentation/`. The
